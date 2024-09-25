@@ -119,6 +119,8 @@ runs:
         role-to-assume: ${{ steps.config.outputs.terraform-plan-role }}
         role-session-name: "atmos-terraform-plan-gitops"
         mask-aws-account-id: "no"
+        aws-access-key-id: ${{ vars.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
     - name: Get atmos settings
       uses: cloudposse/github-action-atmos-get-setting@v1
