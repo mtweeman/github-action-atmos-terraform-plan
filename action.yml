@@ -112,15 +112,15 @@ runs:
           suzuki-shunsuke/tfcmt:
             tag: v4.11.0  
 
-    - name: Configure Plan AWS Credentials
-      uses: aws-actions/configure-aws-credentials@v4.0.2
-      with:
-        aws-region: ${{ steps.config.outputs.aws-region }}
-        role-to-assume: ${{ steps.config.outputs.terraform-plan-role }}
-        role-session-name: "atmos-terraform-plan-gitops"
-        mask-aws-account-id: "no"
-        aws-access-key-id: ${{ env.AWS_ACCESS_KEY_ID }}
-        aws-secret-access-key: ${{ env.AWS_SECRET_ACCESS_KEY }}
+#    - name: Configure Plan AWS Credentials
+#      uses: aws-actions/configure-aws-credentials@v4.0.2
+#      with:
+#        aws-region: ${{ steps.config.outputs.aws-region }}
+#        role-to-assume: ${{ steps.config.outputs.terraform-plan-role }}
+#        role-session-name: "atmos-terraform-plan-gitops"
+#        mask-aws-account-id: "no"
+#        aws-access-key-id: ${{ env.AWS_ACCESS_KEY_ID }}
+#        aws-secret-access-key: ${{ env.AWS_SECRET_ACCESS_KEY }}
 
     - name: Get atmos settings
       uses: cloudposse/github-action-atmos-get-setting@v1
@@ -271,14 +271,14 @@ runs:
         
         rm -f ${TERRAFORM_OUTPUT_FILE}
 
-    - name: Configure State AWS Credentials
-      if: ${{ steps.atmos-plan.outputs.error == 'false' }}
-      uses: aws-actions/configure-aws-credentials@v4.0.2
-      with:
-        aws-region: ${{ steps.config.outputs.aws-region }}
-        role-to-assume: ${{ steps.config.outputs.terraform-state-role }}
-        role-session-name: "atmos-terraform-state-gitops"
-        mask-aws-account-id: "no"
+#    - name: Configure State AWS Credentials
+#      if: ${{ steps.atmos-plan.outputs.error == 'false' }}
+#      uses: aws-actions/configure-aws-credentials@v4.0.2
+#      with:
+#        aws-region: ${{ steps.config.outputs.aws-region }}
+#        role-to-assume: ${{ steps.config.outputs.terraform-state-role }}
+#        role-session-name: "atmos-terraform-state-gitops"
+#        mask-aws-account-id: "no"
 
     - name: Store New Plan
       if: ${{ steps.atmos-plan.outputs.error == 'false' }}
