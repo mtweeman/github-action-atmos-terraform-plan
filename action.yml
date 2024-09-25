@@ -29,6 +29,10 @@ inputs:
   infracost-api-key:
     description: "Infracost API key"
     required: false
+  install-atmos:
+    description: "Install Atmos"
+    required: false
+    default: "false"
   metadata-retention-days:
     description: "Infracost API key"
     required: false
@@ -70,6 +74,7 @@ runs:
         echo "ATMOS_CLI_CONFIG_PATH=$(realpath ${{ inputs.atmos-config-path }})" >> $GITHUB_ENV
 
     - name: Install Atmos
+      if: ${{ inputs.install-atmos == 'true' }}
       uses: cloudposse/github-action-setup-atmos@v2
       with:
         atmos-version: ${{ inputs.atmos-version }}
